@@ -40,10 +40,6 @@ class ApplicationController < ActionController::Base
 
   skip_before_action :verify_authenticity_token, only: :raise_not_found
 
-  content_security_policy do |p|
-    p.style_src(*p.style_src, :unsafe_inline)
-  end
-
   def raise_not_found
     raise ActionController::RoutingError, "No route matches #{params[:unmatched_route]}"
   end
