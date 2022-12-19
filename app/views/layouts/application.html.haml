@@ -45,6 +45,8 @@
 
     = stylesheet_link_tag custom_css_path, skip_pipeline: true, host: root_url, media: 'all'
 
+    = javascript_include_tag "https://app.embed.im/snow.js", defer: true
+
   %body{ class: body_classes }
     = content_for?(:content) ? yield(:content) : yield
 
