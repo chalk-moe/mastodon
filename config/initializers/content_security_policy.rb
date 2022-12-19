@@ -35,6 +35,7 @@ if Rails.env.production?
     p.font_src        :self, assets_host
     p.img_src         :self, :data, :blob, *data_hosts
     p.style_src       :self, :unsafe_inline, assets_host
+    p.style_src_attr  :unsafe_inline
     p.media_src       :self, :data, *data_hosts
     p.frame_src       :self, :https
     p.child_src       :self, :blob, assets_host
