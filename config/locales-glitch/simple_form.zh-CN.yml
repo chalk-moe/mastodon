@@ -4,7 +4,6 @@ zh-CN:
     glitch_only: glitch-soc
     hints:
       defaults:
-        fields: 您可以在您的个人资料中最多显示 %{count} 个项目
         setting_default_content_type_html: 在撰写嘟文时，除非另有指定，假定它们使用原始 HTML 语言撰写
         setting_default_content_type_markdown: 在撰写嘟文时，除非另有指定，假定它们使用 Markdown 进行富文本格式化
         setting_default_content_type_plain: 在撰写嘟文时，除非另有指定，假定它们是没有特殊格式的纯文本（默认的 Mastodon 行为）
@@ -17,8 +16,8 @@ zh-CN:
         setting_default_content_type_html: HTML
         setting_default_content_type_markdown: Markdown
         setting_default_content_type_plain: 纯文本
-        setting_favourite_modal: 在喜欢嘟文前询问我 (仅限于 Glitch 风格)
-        setting_hide_followers_count: 隐藏你的关注者人数
+        setting_favourite_modal: 在点赞嘟文前询问我 (仅限于 Glitch 风格)
+        setting_hide_followers_count: 隐藏你的粉丝人数
         setting_skin: 皮肤
         setting_system_emoji_font: 表情符号使用系统默认字体 (仅限于 Glitch 风格)
       notification_emails:
