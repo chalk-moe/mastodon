@@ -33,6 +33,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: recursive
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
