@@ -55,10 +55,10 @@ Rails.application.config.content_security_policy do |p|
     front_end_build_urls = %w(ws http).map { |protocol| "#{protocol}#{Webpacker.dev_server.https? ? 's' : ''}://#{webpacker_public_host}" }
 
     p.connect_src :self, :data, :blob, *media_hosts, Rails.configuration.x.streaming_api_base_url, *front_end_build_urls
-    p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host
+    p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host, *media_hosts
   else
     p.connect_src :self, :data, :blob, *media_hosts, Rails.configuration.x.streaming_api_base_url
-    p.script_src  :self, assets_host, "'wasm-unsafe-eval'"
+    p.script_src  :self, assets_host, "'wasm-unsafe-eval'", *media_hosts
   end
 end
 
