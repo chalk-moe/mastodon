@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe FanOutOnWriteService, type: :service do
+RSpec.describe FanOutOnWriteService do
   subject { described_class.new }
 
   let(:last_active_at) { Time.now.utc }
@@ -38,7 +38,7 @@ RSpec.describe FanOutOnWriteService, type: :service do
       expect(home_feed_of(alice)).to include status.id
     end
 
-    it 'is added to the home feed of a follower', :sidekiq_inline do
+    it 'is added to the home feed of a follower', :inline_jobs do
       expect(home_feed_of(bob)).to include status.id
       expect(home_feed_of(tom)).to include status.id
     end
@@ -62,7 +62,7 @@ RSpec.describe FanOutOnWriteService, type: :service do
       expect(home_feed_of(alice)).to include status.id
     end
 
-    it 'is added to the home feed of the mentioned follower', :sidekiq_inline do
+    it 'is added to the home feed of the mentioned follower', :inline_jobs do
       expect(home_feed_of(bob)).to include status.id
     end
 
@@ -83,7 +83,7 @@ RSpec.describe FanOutOnWriteService, type: :service do
       expect(home_feed_of(alice)).to include status.id
     end
 
-    it 'is added to the home feed of a follower', :sidekiq_inline do
+    it 'is added to the home feed of a follower', :inline_jobs do
       expect(home_feed_of(bob)).to include status.id
       expect(home_feed_of(tom)).to include status.id
     end
@@ -101,7 +101,7 @@ RSpec.describe FanOutOnWriteService, type: :service do
       expect(home_feed_of(alice)).to include status.id
     end
 
-    it 'is added to the home feed of the mentioned follower', :sidekiq_inline do
+    it 'is added to the home feed of the mentioned follower', :inline_jobs do
       expect(home_feed_of(bob)).to include status.id
     end
 
