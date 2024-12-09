@@ -51,6 +51,10 @@ module User::HasSettings
     settings['web.use_system_emoji_font']
   end
 
+  def setting_snowing
+    settings['web.snowing']
+  end
+
   def setting_noindex
     settings['noindex']
   end

@@ -4,12 +4,13 @@ function embRand(a, b) {
 }
 
 window.addEventListener('DOMContentLoaded', function () {
+  if (!document.body.classList.contains('snowing')) return;
 
   var embedimSnow = document.getElementById("embedim--snow");
   if (!embedimSnow) {
     var embCSS = '.embedim-snow{position: absolute;width: 10px;height: 10px;background: white;border-radius: 50%;margin-top:-10px}';
     var embHTML = '';
-    var count = navigator.userAgentData && navigator.userAgentData.mobile ? 100 : 200;
+    var count = Math.floor(document.body.clientWidth / 8);
     for (var i = 1; i < count; i++) {
       embHTML += '<i class="embedim-snow"></i>';
       var rndX = (embRand(0, 1000000) * 0.0001)
