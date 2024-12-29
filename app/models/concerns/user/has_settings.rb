@@ -55,6 +55,10 @@ module User::HasSettings
     settings['web.snowing']
   end
 
+  def setting_system_scrollbars_ui
+    settings['web.use_system_scrollbars']
+  end
+
   def setting_noindex
     settings['noindex']
   end
