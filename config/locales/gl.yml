@@ -1209,6 +1209,7 @@ gl:
     too_fast: Formulario enviado demasiado rápido, inténtao outra vez.
     use_security_key: Usa chave de seguridade
     user_agreement_html: Lin e acepto os <a href="%{terms_of_service_path}" target="_blank">termos do servizo</a> e a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
+    user_privacy_agreement_html: Lin e acepto a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
   author_attribution:
     example_title: Texto de mostra
     hint_html: Escribes novas ou artigos nun blog alleos a Mastodon? Xestiona o xeito en que podes dar crédito da túa autoría cando os compartes en Mastodon.
@@ -1859,9 +1860,9 @@ gl:
       '63113904': 2 anos
       '7889238': 3 meses
     min_age_label: Límite temporal
-    min_favs: Manter as publicacións favorecidas polo menos
+    min_favs: Manter publicacións favorecidas polo menos
     min_favs_hint: Non elimina ningunha das túas publicacións que recibiron alomenos esta cantidade de favorecementos. Deixa en branco para eliminar publicacións independentemente do número de favorecementos
-    min_reblogs: Manter publicacións promovidas máis de
+    min_reblogs: Manter publicacións promovidas polo menos
     min_reblogs_hint: Non elimina ningunha das túas publicacións se foron promovidas máis deste número de veces. Deixa en branco para eliminar publicacións independentemente do seu número de promocións
   stream_entries:
     sensitive_content: Contido sensible

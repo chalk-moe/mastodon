@@ -37,7 +37,8 @@ class Poll < ApplicationRecord
 
   validates :options, presence: true
   validates :expires_at, presence: true, if: :local?
-  validates_with PollValidator, on: :create, if: :local?
+  validates_with PollOptionsValidator, if: :local?
+  validates_with PollExpirationValidator, if: -> { local? && expires_at_changed? }
 
   before_validation :prepare_options, if: :local?
   before_validation :prepare_votes_count
@@ -61,11 +62,7 @@ class Poll < ApplicationRecord
     votes.where(account: account).pluck(:choice)
   end
 
-  delegate :local?, to: :account
-
-  def remote?
-    !local?
-  end
+  delegate :local?, :remote?, to: :account
 
   def emojis
     @emojis ||= CustomEmoji.from_text(options.join(' '), account.domain)
