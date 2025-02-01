@@ -408,7 +408,7 @@
 body.app-body  {
     background-color: var(--color-bg);
     color: var(--color-fg);
-    font-family: ui-rounded, mastodon-font-sans-serif, sans-serif;
+    font-family: "FFXIV_Lodestone_SSF", "Pretendard Variable", "Pretendard JP Variable", Pretendard, "Pretendard JP", mastodon-font-sans-serif, sans-serif;
 }
 
 .layout-single-column .ui::before {
@@ -3588,7 +3588,7 @@ div[tabindex="-1"] + div[tabindex="-1"] > .status__wrapper > .status-reply.statu
     display: flex;
     align-items: end;
     text-decoration: none;
-}    
+}
 
 .app-body .content-warning .link-button span {
     background-color: transparent;

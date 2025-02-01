@@ -412,7 +412,9 @@
 body.app-body {
   background-color: var(--color-bg);
   color: var(--color-fg);
-  font-family: ui-rounded, mastodon-font-sans-serif, sans-serif;
+  font-family: 'FFXIV_Lodestone_SSF', 'Pretendard Variable',
+    'Pretendard JP Variable', Pretendard, 'Pretendard JP',
+    mastodon-font-sans-serif, sans-serif;
 }
 
 .layout-single-column .ui::before {
@@ -4594,7 +4596,10 @@ div[tabindex='-1']
     position: fixed;
   }
 
-  .app-body:not(.layout-multiple-columns, :has(.ui .ui__header__links > .button[href='/auth/sign_in']))
+  .app-body:not(
+      .layout-multiple-columns,
+      :has(.ui .ui__header__links > .button[href='/auth/sign_in'])
+    )
     .tabs-bar__wrapper {
     z-index: 3;
   }
