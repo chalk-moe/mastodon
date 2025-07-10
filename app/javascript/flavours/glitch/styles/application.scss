@@ -2,11 +2,12 @@
 @use 'mixins';
 @use 'variables';
 @use 'css_variables';
-@use 'styles/fonts/roboto';
-@use 'styles/fonts/roboto-mono';
-@use 'styles/fonts/pretendard';
-@use 'styles/fonts/pretendard-jp';
-@use 'styles/fonts/ffxiv-lodestone';
+@use '@/styles/fonts/roboto';
+@use '@/styles/fonts/roboto-mono';
+@use '@/styles/fonts/pretendard';
+@use '@/styles/fonts/pretendard-jp';
+@use '@/styles/fonts/ffxiv-lodestone';
+
 @use 'reset';
 @use 'basics';
 @use 'branding';
