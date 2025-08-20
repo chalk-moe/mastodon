@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { HotKeys } from 'react-hotkeys';
-
+import CancelFillIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
+import { Hotkeys } from 'flavours/glitch/components/hotkeys';
 import { ContentWarning } from 'flavours/glitch/components/content_warning';
 import { PictureInPicturePlaceholder } from 'flavours/glitch/components/picture_in_picture_placeholder';
 import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
@@ -33,6 +33,7 @@ import StatusActionBar from './status_action_bar';
 import StatusContent from './status_content';
 import StatusIcons from './status_icons';
 import StatusPrepend from './status_prepend';
+import { IconButton } from './icon_button';
 
 const domParser = new DOMParser();
 
@@ -72,6 +73,10 @@ export const defaultMediaVisibility = (status, settings) => {
 
   return !status.get('matched_media_filters') && (displayMedia !== 'hide_all' && !status.get('sensitive') || displayMedia === 'show_all');
 };
+
+const messages = defineMessages({
+  quote_cancel: { id: 'status.quote.cancel', defaultMessage: 'Cancel quote' },
+});
 
 class Status extends ImmutablePureComponent {
 
@@ -128,6 +133,7 @@ class Status extends ImmutablePureComponent {
       inUse: PropTypes.bool,
       available: PropTypes.bool,
     }),
+    contextType: PropTypes.string,
     ...WithOptionalRouterPropTypes,
   };
 
@@ -333,6 +339,10 @@ class Status extends ImmutablePureComponent {
     deployPictureInPicture(status, type, mediaProps);
   };
 
+  handleQuoteCancel = () => {
+    this.props.onQuoteCancel?.();
+  }
+
   handleHotkeyReply = e => {
     e.preventDefault();
     this.props.onReply(this.props.status);
@@ -499,13 +509,13 @@ class Status extends ImmutablePureComponent {
 
     if (hidden) {
       return (
-        <HotKeys handlers={handlers} tabIndex={unfocusable ? null : -1}>
+        <Hotkeys handlers={handlers} focusable={!unfocusable}>
           <div ref={this.handleRef} className='status focusable' tabIndex={unfocusable ? null : 0}>
             <span>{status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}</span>
             {status.get('spoiler_text').length > 0 && (<span>{status.get('spoiler_text')}</span>)}
             {expanded && <span>{status.get('content')}</span>}
           </div>
-        </HotKeys>
+        </Hotkeys>
       );
     }
 
@@ -516,7 +526,7 @@ class Status extends ImmutablePureComponent {
       };
 
       return (
-        <HotKeys handlers={minHandlers} tabIndex={unfocusable ? null : -1}>
+        <Hotkeys handlers={minHandlers} focusable={!unfocusable}>
           <div className='status__wrapper status__wrapper--filtered focusable' tabIndex={unfocusable ? null : 0} ref={this.handleRef}>
             <FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {matchedFilters.join(', ')}.
             {' '}
@@ -524,7 +534,7 @@ class Status extends ImmutablePureComponent {
               <FormattedMessage id='status.show_filter_reason' defaultMessage='Show anyway' />
             </button>
           </div>
-        </HotKeys>
+        </Hotkeys>
       );
     }
 
@@ -678,7 +688,7 @@ class Status extends ImmutablePureComponent {
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
 
     return (
-      <HotKeys handlers={handlers} tabIndex={unfocusable ? null : -1}>
+      <Hotkeys handlers={handlers} focusable={!unfocusable}>
         <div
           className={classNames('status__wrapper', 'focusable', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), unread })}
           {...selectorAttribs}
@@ -715,11 +725,23 @@ class Status extends ImmutablePureComponent {
 
                   <DisplayName account={status.get('account')} />
                 </Permalink>
-                <StatusIcons
-                  status={status}
-                  mediaIcons={mediaIcons}
-                  settings={settings.get('status_icons')}
-                />
+
+
+                {this.props.contextType === 'compose' && isQuotedPost ? (
+                  <IconButton
+                    onClick={this.handleQuoteCancel}
+                    className='status__quote-cancel'
+                    title={intl.formatMessage(messages.quote_cancel)}
+                    icon="cancel-fill"
+                    iconComponent={CancelFillIcon}
+                  />
+                ) : (
+                  <StatusIcons
+                    status={status}
+                    mediaIcons={mediaIcons}
+                    settings={settings.get('status_icons')}
+                  />
+                )}
               </header>
             )}
 
@@ -760,7 +782,7 @@ class Status extends ImmutablePureComponent {
             }
           </div>
         </div>
-      </HotKeys>
+      </Hotkeys>
     );
   }
 

@@ -44,6 +44,7 @@ import {
 import Status from '../components/status';
 import { deleteModal } from '../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../selectors';
+import { quoteComposeCancel } from '../actions/compose_typed';
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
@@ -109,6 +110,20 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     } else {
       dispatch(openModal({ modalType: 'CONFIRM_DELETE_STATUS', modalProps: { statusId: status.get('id'), withRedraft } }));
     }
+  },
+
+  onQuoteCancel() {
+    if (contextType === 'compose') {
+      dispatch(quoteComposeCancel());
+    }
+  },
+
+  onRevokeQuote (status) {
+    dispatch(openModal({ modalType: 'CONFIRM_REVOKE_QUOTE', modalProps: { statusId: status.get('id'), quotedStatusId: status.getIn(['quote', 'quoted_status']) }}));
+  },
+
+  onQuotePolicyChange(status) {
+    dispatch(openModal({ modalType: 'COMPOSE_PRIVACY', modalProps: { statusId: status.get('id') } }));
   },
 
   onEdit (status) {
