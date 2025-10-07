@@ -1,3 +1,5 @@
+import { defineMessages } from 'react-intl';
+
 import { createAction } from '@reduxjs/toolkit';
 import type { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 
@@ -12,7 +14,28 @@ import {
 import type { ApiQuotePolicy } from '../api_types/quotes';
 import type { Status } from '../models/status';
 
-import { ensureComposeIsVisible } from './compose';
+import { showAlert } from './alerts';
+import { focusCompose } from './compose';
+import { openModal } from './modal';
+
+const messages = defineMessages({
+  quoteErrorUpload: {
+    id: 'quote_error.upload',
+    defaultMessage: 'Quoting is not allowed with media attachments.',
+  },
+  quoteErrorPoll: {
+    id: 'quote_error.poll',
+    defaultMessage: 'Quoting is not allowed with polls.',
+  },
+  quoteErrorQuote: {
+    id: 'quote_error.quote',
+    defaultMessage: 'Only one quote at a time is allowed.',
+  },
+  quoteErrorUnauthorized: {
+    id: 'quote_error.unauthorized',
+    defaultMessage: 'You are not authorized to quote this post.',
+  },
+});
 
 type SimulatedMediaAttachmentJSON = ApiMediaAttachmentJSON & {
   unattached?: boolean;
@@ -78,11 +101,58 @@ export const changeUploadCompose = createDataLoadingThunk(
   },
 );
 
-export const quoteComposeByStatus = createAppThunk(
+export const quoteCompose = createAppThunk(
   'compose/quoteComposeStatus',
-  (status: Status, { getState }) => {
-    ensureComposeIsVisible(getState);
+  (status: Status, { dispatch }) => {
+    dispatch(focusCompose());
     return status;
+  },
+);
+
+export const quoteComposeByStatus = createAppThunk(
+  (status: Status, { dispatch, getState }) => {
+    const state = getState();
+    const composeState = state.compose;
+    const mediaAttachments = composeState.get('media_attachments');
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const wasQuietPostHintModalDismissed: boolean =
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+      state.settings.getIn(
+        ['dismissed_banners', 'quote/quiet_post_hint'],
+        false,
+      );
+
+    if (composeState.get('poll')) {
+      dispatch(showAlert({ message: messages.quoteErrorPoll }));
+    } else if (
+      composeState.get('is_uploading') ||
+      (mediaAttachments &&
+        typeof mediaAttachments !== 'string' &&
+        typeof mediaAttachments !== 'number' &&
+        typeof mediaAttachments !== 'boolean' &&
+        mediaAttachments.size !== 0)
+    ) {
+      dispatch(showAlert({ message: messages.quoteErrorUpload }));
+    } else if (composeState.get('quoted_status_id')) {
+      dispatch(showAlert({ message: messages.quoteErrorQuote }));
+    } else if (
+      status.getIn(['quote_approval', 'current_user']) !== 'automatic' &&
+      status.getIn(['quote_approval', 'current_user']) !== 'manual'
+    ) {
+      dispatch(showAlert({ message: messages.quoteErrorUnauthorized }));
+    } else if (
+      status.get('visibility') === 'unlisted' &&
+      !wasQuietPostHintModalDismissed
+    ) {
+      dispatch(
+        openModal({
+          modalType: 'CONFIRM_QUIET_QUOTE',
+          modalProps: { status },
+        }),
+      );
+    } else {
+      dispatch(quoteCompose(status));
+    }
   },
 );
 
@@ -97,6 +167,6 @@ export const quoteComposeById = createAppThunk(
 
 export const quoteComposeCancel = createAction('compose/quoteComposeCancel');
 
-export const setQuotePolicy = createAction<ApiQuotePolicy>(
+export const setComposeQuotePolicy = createAction<ApiQuotePolicy>(
   'compose/setQuotePolicy',
 );

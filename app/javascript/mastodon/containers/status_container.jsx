@@ -12,6 +12,7 @@ import {
   mentionCompose,
   directCompose,
 } from '../actions/compose';
+import { quoteComposeById } from '../actions/compose_typed';
 import {
   initDomainBlockModal,
   unblockDomain,
@@ -41,10 +42,10 @@ import {
   translateStatus,
   undoStatusTranslation,
 } from '../actions/statuses';
+import { setStatusQuotePolicy } from '../actions/statuses_typed';
 import Status from '../components/status';
 import { deleteModal } from '../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../selectors';
-import { quoteComposeCancel } from '../actions/compose_typed';
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
@@ -75,6 +76,10 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
 
   onReblog (status, e) {
     dispatch(toggleReblog(status.get('id'), e.shiftKey));
+  },
+  
+  onQuote (status) {
+    dispatch(quoteComposeById(status.get('id')));
   },
 
   onFavourite (status) {
@@ -108,13 +113,13 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     if (!deleteModal) {
       dispatch(deleteStatus(status.get('id'), withRedraft));
     } else {
-      dispatch(openModal({ modalType: 'CONFIRM_DELETE_STATUS', modalProps: { statusId: status.get('id'), withRedraft } }));
-    }
-  },
-
-  onQuoteCancel() {
-    if (contextType === 'compose') {
-      dispatch(quoteComposeCancel());
+      dispatch(openModal({
+        modalType: 'CONFIRM_DELETE_STATUS',
+        modalProps: {
+          statusId: status.get('id'),
+          withRedraft
+        }
+      }));
     }
   },
 
@@ -123,7 +128,13 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
   },
 
   onQuotePolicyChange(status) {
-    dispatch(openModal({ modalType: 'COMPOSE_PRIVACY', modalProps: { statusId: status.get('id') } }));
+    const statusId = status.get('id');
+    const handleChange = (_, quotePolicy) => {
+      dispatch(
+        setStatusQuotePolicy({ policy: quotePolicy, statusId }),
+      );
+    }
+    dispatch(openModal({ modalType: 'COMPOSE_PRIVACY', modalProps: { statusId, onChange: handleChange } }));
   },
 
   onEdit (status) {
@@ -220,11 +231,10 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     dispatch(deployPictureInPicture({statusId: status.get('id'), accountId: status.getIn(['account', 'id']), playerType: type, props: mediaProps}));
   },
 
-  onInteractionModal (type, status) {
+  onInteractionModal (status) {
     dispatch(openModal({
       modalType: 'INTERACTION',
       modalProps: {
-        type,
         accountId: status.getIn(['account', 'id']),
         url: status.get('uri'),
       },
