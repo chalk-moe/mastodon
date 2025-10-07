@@ -105,7 +105,9 @@ $mobile-menu-breakpoint: 760px;
 $mobile-breakpoint: 630px;
 $no-columns-breakpoint: 600px;
 
-$font-sans-serif: 'FFXIV_Lodestone_SSF', 'Pretendard Variable', 'Pretendard JP Variable', 'Pretendard', 'Pretendard JP', 'mastodon-font-sans-serif' !default;
+$font-sans-serif:
+  'FFXIV_Lodestone_SSF', 'Pretendard Variable', 'Pretendard JP Variable',
+  'Pretendard', 'Pretendard JP', 'mastodon-font-sans-serif' !default;
 $font-display: 'mastodon-font-display' !default;
 $font-monospace: 'mastodon-font-monospace' !default;
 
