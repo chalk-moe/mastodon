@@ -796,6 +796,8 @@ fi:
         view_dashboard_description: Sallii käyttäjille pääsyn koontinäyttöön ja erilaisiin mittareihin
         view_devops: DevOps
         view_devops_description: Sallii käyttäjille pääsyn Sidekiq- ja pgHero-hallintapaneeleihin
+        view_feeds: Näytä live- ja aihesyötteet
+        view_feeds_description: Sallii käyttäjien tarkastella live- ja aihesyötteitä palvelimen asetuksista riippumatta
       title: Roolit
     rules:
       add_new: Lisää sääntö
@@ -837,17 +839,27 @@ fi:
         title: Jätä käyttäjät oletusarvoisesti hakukoneindeksoinnin ulkopuolelle
       discovery:
         follow_recommendations: Seurantasuositukset
-        preamble: Mielenkiintoisen sisällön esille tuominen auttaa saamaan uusia käyttäjiä, jotka eivät ehkä tunne ketään Mastodonista. Määrittele, kuinka erilaiset löytämisominaisuudet toimivat palvelimellasi.
+        preamble: Mielenkiintoisen sisällön esille tuominen on keskeistä perehdyttäessä uusia käyttäjiä, jotka eivät ehkä tunne ketään Mastodonissa. Hallitse, miten eri löydettävyysominaisuudet toimivat palvelimellasi.
         privacy: Yksityisyys
         profile_directory: Profiilihakemisto
         public_timelines: Julkiset aikajanat
         publish_statistics: Julkaise tilastot
-        title: Löytäminen
+        title: Löydettävyys
         trends: Trendit
       domain_blocks:
         all: Kaikille
         disabled: Ei kenellekään
         users: Kirjautuneille paikallisille käyttäjille
+      feed_access:
+        modes:
+          authenticated: Vain todennetut käyttäjät
+          disabled: Vaadi tiettyä käyttäjäroolia
+          public: Kaikki
+      landing_page:
+        values:
+          about: Tietoja
+          local_feed: Paikallinen syöte
+          trends: Trendit
       registrations:
         moderation_recommandation: Varmista, että sinulla on riittävä ja toimintavalmis joukko moderaattoreita, ennen kuin avaat rekisteröitymisen kaikille!
         preamble: Määritä, kuka voi luoda tilin palvelimellesi.
@@ -901,13 +913,15 @@ fi:
       no_status_selected: Julkaisuja ei muutettu, koska yhtään ei ollut valittuna
       open: Avaa julkaisu
       original_status: Alkuperäinen julkaisu
+      quotes: Lainaukset
       reblogs: Edelleen jako
       replied_to_html: Vastaus käyttäjälle %{acct_link}
       status_changed: Julkaisua muutettu
       status_title: Julkaisu käyttäjältä @%{name}
-      title: Tilin julkaisut - @%{name}
+      title: Tilin julkaisut – @%{name}
       trending: Suosituttua
       view_publicly: Näytä julkisesti
+      view_quoted_post: Näytä lainattu julkaisu
       visibility: Näkyvyys
       with_media: Sisältää mediaa
     strikes:
@@ -1182,11 +1196,11 @@ fi:
     hint_html: Jos haluat muuttaa toisesta tilistä tähän tiliin, voit luoda tässä aliaksen, mitä vaaditaan ennen kuin voit edetä siirtämään seuraajasi vanhalta tililtä tälle tilille. Tänä toiminto on itsessään <strong>vaaraton ja kumottavissa</strong>. <strong>Tilin muuttaminen aloitetaan vanhalta tililtä</strong>.
     remove: Poista aliaksen linkitys
   appearance:
-    advanced_web_interface: Edistynyt selainkäyttöliittymä
-    advanced_web_interface_hint: 'Jos haluat hyödyntää näytön koko leveyttä, edistyneen selainkäyttöliittymän avulla voit määrittää useita erilaisia sarakkeita, niin näet kerralla niin paljon tietoa kuin haluat: kotisyöte, ilmoitukset, yleinen aikajana, mikä tahansa määrä listoja ja aihetunnisteita.'
+    advanced_settings: Edistyneet asetukset
     animations_and_accessibility: Animaatiot ja saavutettavuus
-    confirmation_dialogs: Vahvistusikkunat
-    discovery: Löytäminen
+    boosting_preferences: Tehostusasetukset
+    boosting_preferences_info_html: "<strong>Vihje:</strong> Asetuksista riippumatta <kbd>Vaihto</kbd> + <kbd>napsautus</kbd> %{icon} Tehosta-kuvakkeeseen tehostaa välittömästi."
+    discovery: Löydettävyys
     localization:
       body: Mastodonin ovat kääntäneet vapaaehtoiset.
       guide_link: https://crowdin.com/project/mastodon
@@ -1587,6 +1601,13 @@ fi:
       expires_at: Vanhenee
       uses: Käyttökertoja
     title: Kutsu käyttäjiä
+  link_preview:
+    author_html: Tehnyt %{name}
+    potentially_sensitive_content:
+      action: Näytä napsauttamalla
+      confirm_visit: Haluatko varmasti avata tämän linkin?
+      hide_button: Piilota
+      label: Mahdollisesti arkaluonteista sisältöä
   lists:
     errors:
       limit: Sinulla on enimmäismäärä listoja
@@ -1651,7 +1672,7 @@ fi:
       disabled_account: Nykyinen tilisi ei ole täysin käytettävissä tämän jälkeen. Sinulla on kuitenkin pääsy tietojen vientiin ja tilin uudelleenaktivointiin.
       followers: Tämä toiminto siirtää kaikki seuraajasi nykyiseltä tililtä uudelle tilille
       only_redirect_html: Vaihtoehtoisesti voit <a href="%{path}">asettaa vain ohjauksen profiiliisi</a>.
-      other_data: Muita tietoja ei siirretä automaattisesti
+      other_data: Muita tietoja ei siirretä automaattisesti (mukaan lukien julkaisujasi ja seurattavien tilien luettoloa)
       redirect: Nykyisen tilisi profiili päivitetään uudelleenohjaushuomautuksella ja suljetaan pois hauista
   moderation:
     title: Moderointi
@@ -1897,6 +1918,9 @@ fi:
         other: "%{count} videota"
     boosted_from_html: Tehosti lähteestä %{acct_link}
     content_warning: 'Sisältövaroitus: %{warning}'
+    content_warnings:
+      hide: Piilota julkaisu
+      show: Näytä lisää
     default_language: Sama kuin käyttöliittymän kieli
     disallowed_hashtags:
       one: 'sisälsi kielletyn aihetunnisteen: %{tags}'
@@ -1905,16 +1929,22 @@ fi:
     errors:
       in_reply_not_found: Julkaisua, johon yrität vastata, ei näytä olevan olemassa.
       quoted_status_not_found: Julkaisua, jota yrität lainata, ei näytä olevan olemassa.
+      quoted_user_not_mentioned: Mainitsematonta käyttäjää ei voi lainata yksityismaininnassa.
     over_character_limit: merkkimäärän rajoitus %{max} ylitetty
     pin_errors:
       direct: Vain mainituille käyttäjille näkyviä julkaisuja ei voi kiinnittää
       limit: Olet jo kiinnittänyt enimmäismäärän julkaisuja
       ownership: Muiden julkaisuja ei voi kiinnittää
       reblog: Tehostusta ei voi kiinnittää
+    quote_error:
+      not_available: Julkaisu ei saatavilla
+      pending_approval: Julkaisu odottaa
+      revoked: Tekijä on poistanut julkaisun
     quote_policies:
       followers: Vain seuraajat
       nobody: Vain minä
       public: Kuka tahansa
+    quote_post_author: Lainasi käyttäjän %{acct} julkaisua
     title: "%{name}: ”%{quote}”"
     visibilities:
       direct: Yksityismaininta
@@ -2056,7 +2086,7 @@ fi:
         disable: Et voi enää käyttää tiliäsi, mutta profiilisi ja muut tiedot pysyvät muuttumattomina. Voit pyytää varmuuskopiota tiedoistasi, vaihtaa tilin asetuksia tai poistaa tilisi.
         mark_statuses_as_sensitive: Palvelimen %{instance} moderaattorit ovat merkinneet osan julkaisuistasi arkaluonteisiksi. Tämä tarkoittaa sitä, että mediaa täytyy napauttaa ennen kuin sen esikatselu näytetään. Voit merkitä median itse arkaluonteiseksi, kun julkaiset tulevaisuudessa.
         sensitive: Tästä lähtien kaikki lähetetyt mediatiedostot merkitään arkaluonteisiksi ja piilotetaan napsautusvaroituksen taakse.
-        silence: Voit edelleen käyttää tiliäsi, mutta vain sinua jo seuraavat käyttäjät näkevät julkaisusi tällä palvelimella ja sinut voidaan sulkea pois eri löytämisominaisuuksista. Toiset voivat kuitenkin edelleen seurata sinua manuaalisesti.
+        silence: Voit edelleen käyttää tiliäsi, mutta vain sinua jo seuraavat käyttäjät näkevät julkaisusi tällä palvelimella ja sinut voidaan sulkea pois eri löydettävyysominaisuuksista. Toiset voivat kuitenkin edelleen seurata sinua manuaalisesti.
         suspend: Et voi enää käyttää tiliäsi, eivätkä profiilisi ja muut tiedot ole enää käytettävissä. Voit silti kirjautua sisään pyytääksesi tietojesi varmuuskopiota, kunnes tiedot on poistettu kokonaan noin 30 päivän kuluttua. Säilytämme kuitenkin joitain perustietoja, jotka estävät sinua kiertämästä jäädytystä.
       reason: 'Syy:'
       statuses: 'Julkaisuja lainattu:'

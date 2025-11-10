@@ -61,7 +61,6 @@ id:
       featured_tag:
         name: 'Ini adalah beberapa tagar yang sering Anda gunakan:'
       filters:
-        action: Pilih tindakan apa yang dilakukan ketika sebuah kiriman cocok dengan saringan
         actions:
           hide: Sembunyikan konten yang disaring, seperti itu tidak ada
           warn: Sembunyikan konten yang disaring di belakang sebuah peringatan menyebutkan judul saringan
@@ -176,10 +175,8 @@ id:
         setting_aggregate_reblogs: Boost grup di linimasa
         setting_always_send_emails: Selalu kirim notifikasi email
         setting_auto_play_gif: Mainkan otomatis animasi GIF
-        setting_boost_modal: Tampilkan dialog konfirmasi dialog sebelum boost
         setting_default_language: Bahasa posting
         setting_default_sensitive: Selalu tandai media sebagai sensitif
-        setting_delete_modal: Tampilkan dialog konfirmasi sebelum hapus toot
         setting_disable_swiping: Nonaktifkan gerak usap
         setting_display_media: Tampilan media
         setting_display_media_default: Bawaan
