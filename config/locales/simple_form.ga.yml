@@ -88,7 +88,7 @@ ga:
         activity_api_enabled: Áireamh na bpost a foilsíodh go háitiúil, úsáideoirí gníomhacha, agus clárúcháin nua i buicéid seachtainiúla
         app_icon: WEBP, PNG, GIF nó JPG. Sáraíonn sé an deilbhín réamhshocraithe aipe ar ghléasanna soghluaiste le deilbhín saincheaptha.
         backups_retention_period: Tá an cumas ag úsáideoirí cartlanna dá gcuid post a ghiniúint le híoslódáil níos déanaí. Nuair a bheidh luach dearfach socraithe, scriosfar na cartlanna seo go huathoibríoch ó do stór tar éis an líon sonraithe laethanta.
-        bootstrap_timeline_accounts: Cuirfear na cuntais seo ar bharr na moltaí a leanann úsáideoirí nua.
+        bootstrap_timeline_accounts: Beidh na cuntais seo bioráilte ag barr mholtaí leantacha úsáideoirí nua. Cuir liosta cuntas ar fáil atá scartha le camóga.
         closed_registrations_message: Ar taispeáint nuair a dhúntar clárúcháin
         content_cache_retention_period: Scriosfar gach postáil ó fhreastalaithe eile (lena n-áirítear treisithe agus freagraí) tar éis an líon sonraithe laethanta, gan aird ar aon idirghníomhaíocht úsáideora áitiúil leis na postálacha sin. Áirítear leis seo postálacha ina bhfuil úsáideoir áitiúil tar éis é a mharcáil mar leabharmharcanna nó mar cheanáin. Caillfear tagairtí príobháideacha idir úsáideoirí ó chásanna éagsúla freisin agus ní féidir iad a athchóiriú. Tá úsáid an tsocraithe seo beartaithe le haghaidh cásanna sainchuspóra agus sáraítear go leor ionchais úsáideoirí nuair a chuirtear i bhfeidhm é le haghaidh úsáid ghinearálta.
         custom_css: Is féidir leat stíleanna saincheaptha a chur i bhfeidhm ar an leagan gréasáin de Mastodon.
@@ -111,6 +111,7 @@ ga:
         thumbnail: Íomhá thart ar 2:1 ar taispeáint taobh le faisnéis do fhreastalaí.
         trendable_by_default: Léim ar athbhreithniú láimhe ar ábhar treochta. Is féidir míreanna aonair a bhaint as treochtaí fós tar éis an fhíric.
         trends: Léiríonn treochtaí cé na postálacha, hashtags agus scéalta nuachta atá ag tarraingt ar do fhreastalaí.
+        wrapstodon: Iarr ar úsáideoirí áitiúla achoimre spraíúil a ghiniúint ar a n-úsáid Mastodon i rith na bliana. Bíonn an ghné seo ar fáil idir an 10ú agus an 31ú Nollaig gach bliain, agus tairgtear é d’úsáideoirí a rinne post Poiblí nó Ciúin Poiblí amháin ar a laghad agus a d’úsáid hais clib amháin ar a laghad laistigh den bhliain.
       form_challenge:
         current_password: Tá tú ag dul isteach i limistéar slán
       imports:
@@ -241,6 +242,8 @@ ga:
         setting_always_send_emails: Seol fógraí ríomhphoist i gcónaí
         setting_auto_play_gif: Gifs beoite go huathoibríoch a imirt
         setting_boost_modal: Rialú a fheabhsaíonn infheictheacht
+        setting_color_scheme: Mód
+        setting_contrast: Codarsnacht
         setting_default_language: Teanga postála
         setting_default_privacy: Infheictheacht postála
         setting_default_quote_policy: Cé a fhéadfaidh lua
@@ -315,6 +318,7 @@ ga:
         thumbnail: Mionsamhail freastalaí
         trendable_by_default: Ceadaigh treochtaí gan athbhreithniú roimh ré
         trends: Cumasaigh treochtaí
+        wrapstodon: Cumasaigh Wrapstodon
       interactions:
         must_be_follower: Cuir bac ar fhógraí ó dhaoine nach leantóirí iad
         must_be_following: Cuir bac ar fhógraí ó dhaoine nach leanann tú
@@ -375,9 +379,9 @@ ga:
         jurisdiction: Dlínse dhlíthiúil
         min_age: Aois íosta
       user:
-        date_of_birth_1i: Lá
+        date_of_birth_1i: Bliain
         date_of_birth_2i: Mí
-        date_of_birth_3i: Bliain
+        date_of_birth_3i: Lá
         role: Ról
         time_zone: Crios ama
       user_role:

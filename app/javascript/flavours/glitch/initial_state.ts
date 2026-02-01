@@ -1,3 +1,4 @@
+import type { ApiAnnualReportState } from './api/annual_report';
 import type { ApiAccountJSON } from './api_types/accounts';
 
 type InitialStateLanguage = [code: string, name: string, localName: string];
@@ -49,6 +50,7 @@ interface InitialStateMeta {
   status_page_url: string;
   terms_of_service_enabled: boolean;
   emoji_style?: string;
+  wrapstodon?: InitialWrapstodonState | null;
   default_content_type: string;
 }
 
@@ -65,6 +67,11 @@ interface PollLimits {
   max_option_chars: number;
   min_expiration: number;
   max_expiration: number;
+}
+
+interface InitialWrapstodonState {
+  year: number;
+  state: ApiAnnualReportState;
 }
 
 export interface InitialState {
@@ -155,18 +162,23 @@ export const criticalUpdatesPending = initialState?.critical_updates_pending;
 export const statusPageUrl = getMeta('status_page_url');
 export const sso_redirect = getMeta('sso_redirect');
 export const termsOfServiceEnabled = getMeta('terms_of_service_enabled');
+export const wrapstodon = getMeta('wrapstodon');
 
-const displayNames = new Intl.DisplayNames(getMeta('locale'), {
-  type: 'language',
-  fallback: 'none',
-  languageDisplay: 'standard',
-});
+const displayNames =
+  // Intl.DisplayNames can be undefined in old browsers
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  Intl.DisplayNames &&
+  (new Intl.DisplayNames(getMeta('locale'), {
+    type: 'language',
+    fallback: 'none',
+    languageDisplay: 'standard',
+  }) as Intl.DisplayNames | undefined);
 
 export const languages = initialState?.languages.map((lang) => {
   // zh-YUE is not a valid CLDR unicode_language_id
   return [
     lang[0],
-    displayNames.of(lang[0].replace('zh-YUE', 'yue')) ?? lang[1],
+    displayNames?.of(lang[0].replace('zh-YUE', 'yue')) ?? lang[1],
     lang[2],
   ];
 });

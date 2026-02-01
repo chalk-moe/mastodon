@@ -7,6 +7,8 @@ cy:
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
     title: Ynghylch
   accounts:
+    errors:
+      cannot_be_added_to_collections: Does dim modd ychwanegu'r cyfrif hwn at gasgliadau.
     followers:
       few: Dilynwyr
       many: Dilynwyr
@@ -902,6 +904,7 @@ cy:
         publish_statistics: Cyhoeddi ystadegau
         title: Darganfod
         trends: Tueddiadau
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: I bawb
         disabled: I neb
@@ -1392,6 +1395,13 @@ cy:
     hint_html: "<strong>Awgrym:</strong> Fyddwn ni ddim yn gofyn i chi am eich cyfrinair eto am yr awr nesaf."
     invalid_password: Cyfrinair annilys
     prompt: Cadarnhewch gyfrinair i barhau
+  color_scheme:
+    auto: Awto
+    dark: Tywyll
+    light: Golau
+  contrast:
+    auto: Awto
+    high: Uchel
   crypto:
     errors:
       invalid_key: ddim yn allwedd Ed25519 na Curve25519 dilys
@@ -1828,6 +1838,7 @@ cy:
       disabled_account: Ni fydd modd defnyddio'ch cyfrif cyfredol yn llawn wedyn. Fodd bynnag, bydd gennych fynediad i allforio data yn ogystal ag ail agor.
       followers: Bydd y weithred hon yn symud yr holl ddilynwyr o'r cyfrif cyfredol i'r cyfrif newydd
       only_redirect_html: Fel arall, <a href="%{path}">dim ond ailgyfeiriad y gallwch chi ei osod ar eich proffil</a>.
+      other_data: Bydd dim ddata arall yn cael ei symud yn awtomatig (gan gynnwys eich postiadau a'r rhestr o gyfrifon rydych chi'n eu dilyn)
       redirect: Bydd proffil eich cyfrif presennol yn cael ei diweddaru gyda hysbysiad ailgyfeirio ac yn cael ei eithrio o chwiliadau
   moderation:
     title: Cymedroil
@@ -1861,16 +1872,22 @@ cy:
       body: 'Caswoch eich crybwyll gan %{name} yn:'
       subject: Cawsoch eich crybwyll gan %{name}
       title: Crywbylliad newydd
+    moderation_warning:
+      subject: Rydych wedi derbyn rhybudd gan gymedrolwr
     poll:
       subject: Mae arolwg gan %{name} wedi dod i ben
     quote:
       body: 'Mae %{name} wedi dyfynnu eich postiad :'
       subject: Mae %{name} wedi dyfynnu eich postiad
       title: Dyfyniad newydd
+    quoted_update:
+      subject: Golygodd %{name} bostiad rydych chi wedi'i ddyfynnu
     reblog:
       body: 'Cafodd eich postiad ei hybu gan %{name}:'
       subject: Rhoddodd %{name} hwb i'ch postiad
       title: Hwb newydd
+    severed_relationships:
+      subject: Rydych chi wedi colli cysylltiadau oherwydd penderfyniad cymedroli
     status:
       subject: "%{name} newydd ei bostio"
     update:
@@ -2100,6 +2117,7 @@ cy:
     errors:
       in_reply_not_found: Nid yw'n ymddangos bod y postiad rydych chi'n ceisio ei ateb yn bodoli.
       quoted_status_not_found: Nid yw'n ymddangos bod y postiad rydych chi'n ceisio'i ddyfynnu yn bodoli.
+      quoted_user_not_mentioned: Does dim modd dyfynnu defnyddiwr heb ei grybwyll mewn postiad Crybwyll Preifat.
     over_character_limit: wedi mynd y tu hwnt i'r terfyn nodau o %{max}
     pin_errors:
       direct: Nid oes modd pinio postiadau sy'n weladwy i ddefnyddwyr a grybwyllwyd yn unig
@@ -2127,11 +2145,11 @@ cy:
     enabled: Dileu hen bostiadau'n awtomatig
     enabled_hint: Yn dileu eich postiadau yn awtomatig ar ôl iddyn nhw gyrraedd trothwy oed penodedig, oni bai eu bod yn cyfateb i un o'r eithriadau isod
     exceptions: Eithriadau
-    explanation: Oherwydd bod dileu postiadau yn weithrediad drud, mae hyn yn cael ei wneud yn araf dros amser pan nad yw'r gweinydd yn brysur fel arall. Am y rheswm hwn, efallai y bydd eich postiadau yn cael eu dileu ychydig ar ôl iddyn nhw gyrraedd y trothwy oed.
+    explanation: Caiff dileu awtomataidd ei berfformio â blaenoriaeth isel. Gall fod oedi rhwng cyrraedd y trothwy oed a chael ei ddileu.
     ignore_favs: Anwybyddu ffefrynnau
     ignore_reblogs: Anwybyddu hybiau
     interaction_exceptions: Eithriadau yn seiliedig ar ryngweithio
-    interaction_exceptions_explanation: Sylwch nad oes unrhyw sicrwydd y bydd postiadau'n cael eu dileu os ydyn nhw'n mynd o dan y trothwy ffefrynnau neu hybu ar ôl mynd drostyn nhw unwaith.
+    interaction_exceptions_explanation: Maen bosib cadw postiadau sy'n mynd dros dro dros y trothwy ffefryn neu hwb hyd yn oed os cawn nhw eu gostwng yn ddiweddarach.
     keep_direct: Cadw negeseuon uniongyrchol
     keep_direct_hint: Nid yw'n dileu unrhyw un o'ch negeseuon uniongyrchol
     keep_media: Cadw postiadau gydag atodiadau cyfryngau
@@ -2348,8 +2366,12 @@ cy:
       error: Bu anhawster wrth ddileu eich allwedd ddiogelwch. Ceisiwch eto, os gwelwch yn dda.
       success: Cafodd eich allwedd ddiogelwch ei dileu'n llwyddiannus.
     invalid_credential: Allwedd ddiogelwch annilys
+    nickname: Llysenw
     nickname_hint: Rhowch lysenw eich allwedd ddiogelwch newydd
     not_enabled: Nid ydych wedi galluogi WebAuthn eto
     not_supported: Nid yw'r porwr hwn yn cynnal allweddi diogelwch
     otp_required: I ddefnyddio allweddi diogelwch, galluogwch ddilysu dau ffactor yn gyntaf.
     registered_on: Cofrestrwyd ar %{date}
+  wrapstodon:
+    description: Gweler sut defnyddiodd %{name} Mastodon eleni!
+    title: Wrapstodon %{year} ar gyfer %{name}

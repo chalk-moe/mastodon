@@ -53,7 +53,7 @@ const renderHashtags = (hashtags: HashtagType[]) =>
 
 const renderStatuses = (statusIds: string[]) =>
   hidePeek<string>(statusIds).map((id) => (
-    <StatusQuoteManager key={id} id={id} />
+    <StatusQuoteManager contextType='search' key={id} id={id} />
   ));
 
 type SearchType = 'all' | ApiSearchType;
@@ -189,7 +189,7 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
                   onClickMore={handleSelectStatuses}
                 >
                   {results.statuses.slice(0, INITIAL_DISPLAY).map((id) => (
-                    <StatusQuoteManager key={id} id={id} />
+                    <StatusQuoteManager contextType='search' key={id} id={id} />
                   ))}
                 </SearchSection>
               )}
@@ -225,7 +225,7 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
       />
 
       <div className='explore__search-header'>
-        <Search singleColumn initialValue={trimmedValue} />
+        <Search singleColumn initialValue={trimmedValue} key={trimmedValue} />
       </div>
 
       <div className='account__section-headline'>

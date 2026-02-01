@@ -43,6 +43,8 @@ class UserSettings
     setting :auto_play, default: false
     setting :snowing, default: true
     setting :emoji_style, default: 'auto', in: %w(auto native twemoji)
+    setting :color_scheme, default: 'auto', in: %w(auto light dark)
+    setting :contrast, default: 'auto', in: %w(auto high)
   end
 
   namespace :notification_emails do

@@ -57,7 +57,7 @@ pt-BR:
         setting_advanced_layout: Exiba o Mastodon em um layout de várias colunas, permitindo que você visualize a linha do tempo, as notificações e uma terceira coluna de sua escolha. Não recomendado para telas menores.
         setting_aggregate_reblogs: Não mostrar novos impulsos para publicações que já foram impulsionadas recentemente (afeta somente os impulsos mais recentes)
         setting_always_send_emails: Normalmente, as notificações por e-mail não serão enviadas enquanto você estiver usando ativamente o Mastodon
-        setting_boost_modal: Quando ativada, a função de impulsionar primeiro abrirá uma caixa de diálogo de confirmação na qual você poderá alterar a visibilidade do seu impulsionamento.
+        setting_boost_modal: Quando ativada, a função de impulsionar primeiro abrirá uma caixa de diálogo de confirmação onde você poderá alterar a visibilidade do seu impulsionamento.
         setting_default_quote_policy_private: Publicações exclusivas de seguidores criadas no Mastodon não podem ser citadas por outras pessoas.
         setting_default_quote_policy_unlisted: Quando as pessoas citarem você, suas publicações também ficarão ocultas da linha do tempo.
         setting_default_sensitive: Mídia sensível está oculta por padrão e pode ser revelada com um clique
@@ -65,7 +65,7 @@ pt-BR:
         setting_display_media_hide_all: Sempre ocultar todas as mídias
         setting_display_media_show_all: Sempre mostrar mídia sensível
         setting_emoji_style: Como exibir emojis. "Automáticos" tentará usar emojis nativos, mas voltará para o Twemoji para navegadores legados.
-        setting_quick_boosting_html: Quando ativado, clicar no ícone de impulsionamento %{boost_icon} impulsionará imediatamente o texto, em vez de abrir o menu suspenso de impulsionamento/cotação. Move a ação de cotação para o menu %{options_icon} (Opções).
+        setting_quick_boosting_html: Quando ativado, clicar no ícone de impulsionamento %{boost_icon} impulsionará imediatamente o texto, em vez de abrir o menu suspenso de impulsionamento/citação. Move a ação de citação para o menu %{options_icon} (Opções).
         setting_system_scrollbars_ui: Se aplica apenas para navegadores de computador baseado no Safari e Chrome
         setting_use_blurhash: O blur é baseado nas cores da imagem oculta, ofusca a maioria dos detalhes
         setting_use_pending_items: Ocultar atualizações da linha do tempo atrás de um clique ao invés de rolar automaticamente
@@ -79,6 +79,7 @@ pt-BR:
       featured_tag:
         name: 'Aqui estão algumas hashtags usadas recentemente:'
       filters:
+        action: Escolha qual ação performar quando uma postagem coincidir com o filtro
         actions:
           blur: Oculte a mídia com um aviso, porém mantenha o texto visível
           hide: Esconder completamente o conteúdo filtrado, comportando-se como se ele não existisse
@@ -87,7 +88,7 @@ pt-BR:
         activity_api_enabled: Contagem de publicações locais, usuários ativos e novos usuários semanais
         app_icon: WEBP, PNG, GIF ou JPG. Sobrescrever o ícone padrão do aplicativo em dispositivos móveis com um ícone personalizado.
         backups_retention_period: Os usuários podem gerar arquivos de suas postagens para baixar mais tarde. Quando definido como um valor positivo, esses arquivos serão automaticamente excluídos do seu armazenamento após o número especificado de dias.
-        bootstrap_timeline_accounts: Estas contas serão fixadas no topo das recomendações de novos usuários para seguir.
+        bootstrap_timeline_accounts: Estas contas serão fixadas ao topo das recomendações de novos usuários. Forneça uma lista de contas separada por vírgulas.
         closed_registrations_message: Exibido quando as inscrições estiverem fechadas
         content_cache_retention_period: Todas as postagens de outros servidores (incluindo boosts e respostas) serão excluídas após o número especificado de dias, sem levar a qualquer interação do usuário local com esses posts. Isto inclui postagens onde um usuário local o marcou como favorito ou favoritos. Menções privadas entre usuários de diferentes instâncias também serão perdidas e impossíveis de restaurar. O uso desta configuração destina-se a instâncias especiais de propósitos e quebra muitas expectativas dos usuários quando implementadas para uso de propósito geral.
         custom_css: Você pode aplicar estilos personalizados na versão da web do Mastodon.
@@ -236,7 +237,7 @@ pt-BR:
         setting_aggregate_reblogs: Agrupar boosts nas linhas
         setting_always_send_emails: Sempre enviar notificações por e-mail
         setting_auto_play_gif: Reproduzir GIFs automaticamente
-        setting_boost_modal: Controle que aumenta a visibilidade
+        setting_boost_modal: Controlar a visibilidade dos impulsos
         setting_default_language: Idioma dos toots
         setting_default_privacy: Visibilidade da publicação
         setting_default_quote_policy: Quem pode citar
@@ -252,7 +253,7 @@ pt-BR:
         setting_expand_spoilers: Sempre expandir toots com Aviso de Conteúdo
         setting_hide_network: Ocultar suas relações
         setting_missing_alt_text_modal: Avise-me antes de publicar mídia sem texto alternado
-        setting_quick_boosting: Ativar aceleração rápida
+        setting_quick_boosting: Ativar impulsionamento rápido
         setting_reduce_motion: Reduzir animações
         setting_system_font_ui: Usar fonte padrão do sistema
         setting_system_scrollbars_ui: Usar barra de rolagem padrão do sistema
@@ -371,9 +372,9 @@ pt-BR:
         jurisdiction: Jurisdição legal
         min_age: Idade mínima
       user:
-        date_of_birth_1i: Dia
+        date_of_birth_1i: Ano
         date_of_birth_2i: Mês
-        date_of_birth_3i: Ano
+        date_of_birth_3i: Dia
         role: Cargo
         time_zone: Fuso horário
       user_role:
