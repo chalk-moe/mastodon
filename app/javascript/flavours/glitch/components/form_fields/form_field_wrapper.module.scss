@@ -1,13 +1,16 @@
 .wrapper {
+  --form-field-label-gap: 6px;
+
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--form-field-label-gap);
   color: var(--color-text-primary);
   font-size: 15px;
 
   &[data-input-placement^='inline'] {
     flex-direction: row;
-    gap: 8px;
+
+    --form-field-label-gap: 8px;
   }
 
   &[data-input-placement='inline-start'] {
@@ -29,6 +32,10 @@
 .label {
   font-weight: 500;
 
+  &[data-has-parent-fieldset='true'] {
+    font-weight: normal;
+  }
+
   [data-has-error='true'] & {
     color: var(--color-text-error);
   }
@@ -37,6 +44,14 @@
 .hint {
   color: var(--color-text-secondary);
   font-size: 13px;
+}
+
+.status {
+  // If there's no content, we need to compensate for the parent's
+  // flex gap to avoid extra spacing below the field.
+  &:empty {
+    margin-top: calc(-1 * var(--form-field-label-gap));
+  }
 }
 
 .inputWrapper {

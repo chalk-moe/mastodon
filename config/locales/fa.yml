@@ -12,7 +12,6 @@ fa:
     followers:
       one: پی‌گیرنده
       other: پی‌گیرنده
-    following: پی می‌گیرد
     instance_actor_flash: این حساب عاملی مجازیست که به نمایندگی از خود کارساز استفاده می‌شود و نه کاربری جداگانه. این حساب به منظور اتصال به فدراسیون استفاده می‌شود و نباید معلق شود.
     last_active: آخرین فعّالیت
     link_verified_on: مالکیت این پیوند در %{date} بررسی شد
@@ -338,6 +337,14 @@ fa:
       unpublish: عدم انتشار
       unpublished_msg: انتشار اعلامیه با موفقیت لغو شد!
       updated_msg: اعلامیه با موفقیت به‌روز شد!
+    collections:
+      collection_title: محموعه به دست %{name}
+      contents: محتوا
+      number_of_accounts:
+        one: ۱ حساب
+        other: "%{count} حساب"
+      open: گشودن
+      view_publicly: دیدن عمومی
     critical_update_pending: به‌روز رسانی‌های بحرانی منتظرند
     custom_emojis:
       assign_category: تعیین دسته
@@ -677,6 +684,7 @@ fa:
       cancel: لغو
       category: دسته
       category_description_html: دلیل گزارش این حساب و/یا محتوا در ارتباط با حساب گزارش شده ذکر خواهد شد
+      collections: مجموعه‌ها (%{count})
       comment:
         none: هیچ
       comment_description_html: 'برای ارائه اطلاعات بیشتر، %{name} نوشت:'
@@ -706,12 +714,13 @@ fa:
       report: 'گزارش #%{id}'
       reported_account: حساب گزارش‌شده
       reported_by: گزارش از طرف
+      reported_content: محتوای گزارش شده
       reported_with_application: گزارش شده با برنامه
       resolved: حل‌شده
       resolved_msg: گزارش با موفقیت حل شد!
       skip_to_actions: پرش به کنش‌ها
       status: نوشته
-      statuses: محتوای گزارش شده
+      statuses: فرسته‌ها (%{count})
       statuses_description_html: محتوای توهین آمیز در ارتباط با حساب گزارش شده ذکر می شود
       summary:
         action_preambles:
@@ -746,6 +755,7 @@ fa:
       categories:
         administration: مدیریت
         devops: DevOps
+        email: رایانامه
         invites: دعوت‌ها
         moderation: نظارت
         special: ویژه
@@ -1212,7 +1222,6 @@ fa:
   application_mailer:
     notification_preferences: تغییر ترجیحات رایانامه
     salutation: "%{name}،"
-    settings: 'تغییر ترجیحات رایانامه: %{link}'
     unsubscribe: لغو اشتراک
     view: 'نمایش:'
     view_profile: دیدن نمایه
@@ -1395,9 +1404,15 @@ fa:
       your_appeal_pending: شما یک درخواست تجدیدنظر فرستادید
       your_appeal_rejected: درخواست تجدیدنظرتان رد شد
   edit_profile:
-    basic_information: اطلاعات پایه
-    hint_html: "<strong>شخصی‌سازی آن چه مردم روی نمایهٔ عمومیتان و کنار فرسته‌هایتان می‌بینند.</strong> هنگامی که نمایه‌ای کامل و یک تصویر نمایه داشته باشید،‌ احتمال پی‌گیری متقابل و تعامل با شما بیش‌تر است."
     other: سایر
+  email_subscription_mailer:
+    notification:
+      create_account: ایجاد حساب ماستودون
+      subject:
+        plural: فرستهٔ جدید از %{name}
+        singular: 'فرستهٔ جدید: «%{excerpt}»'
+      title:
+        plural: فرسته‌های جدید از %{name}
   emoji_styles:
     auto: خودکار
     native: بومی
@@ -1436,10 +1451,8 @@ fa:
     mutes: حساب‌های بی‌صداشده
     storage: تصویرهای ذخیره‌شده
   featured_tags:
-    add_new: افزودن تازه
     errors:
       limit: شما بیشترین تعداد مجاز برچسب‌ها را دارید
-    hint_html: "<strong>برچسب‌های برگزیده چیستند؟</strong> این برچسب‌ها به طور واضحی روی نمایهٔ عمومیتان نمایش یافته می‌گذارد افراد فرسته‌های عمومیتان زیرشان را مرور کنند. ابزاری عالی برای دنبال کردن آثار خلاقانه یا پروژه‌های بلندمدت است."
   filters:
     contexts:
       account: نمایه‌ها
@@ -1632,21 +1645,6 @@ fa:
     failed_sign_in_html: تلاش‌های شکست‌خوردهٔ ورود با %{method} از %{ip} (%{browser})
     successful_sign_in_html: ورودهای موفق با %{method} از %{ip} (%{browser})
     title: تاریخچهٔ تأیید هویت
-  mail_subscriptions:
-    unsubscribe:
-      action: بله. لغو اشتراک
-      complete: لغو اشتراک شد
-      confirmation_html: مطمئنید که می‌خواهید اشتراک %{type} را از ماستودون روی %{domain} برای رایانامهٔ %{email} لغو کنید؟ همواره می‌توانید از <a href="%{settings_path}">تنظیمات آگاهی رایانامه‌ای</a> دوباره مشترک شوید.
-      emails:
-        notification_emails:
-          favourite: رایانامه‌های آگاهی برگزیدن
-          follow: رایانامه‌های آگاهی پی‌گیری
-          follow_request: رایانامه‌های درخواست پی‌گیری
-          mention: رایانامه‌های آگاهی اشاره
-          reblog: رایانامه‌های آگاهی تقویت
-      resubscribe_html: اگر اشتراک را اشتباهی لغو کردید می‌توانید از <a href="%{settings_path}">تنظیمات آگاهی رایانامه‌ای</a> دوباره مشترک شوید.
-      success_html: دیگر %{type} را از ماستودون روی %{domain} برای رایانامهٔ %{email} نخواهید گرفت.
-      title: لغو اشتراک
   media_attachments:
     validations:
       images_and_video: نمی‌توان برای نوشته‌ای که تصویر دارد ویدیو بارگذاری کرد
@@ -1875,7 +1873,7 @@ fa:
       firefox_os: سیستم‌عامل فایرفاکس
       ios: آی‌اواس
       kai_os: سیستم‌عامل کای
-      linux: لینوکس
+      linux: گنو/لینوکس
       mac: مک
       unknown_platform: بن‌سازهٔ ناشناخته
       windows: ویندوز
@@ -2017,11 +2015,6 @@ fa:
     past_preamble_html: شرایط خدماتمان را تغییر داده‌ایم. تشویقتان می‌کنیم که شرایط به‌روز شده را بازبینی کنید.
     review_link: بازبینی شرایط استفاده
     title: شرایط خدمات %{domain} در حال تغییر است
-  themes:
-    contrast: ماستودون (سایه‌روشن بالا)
-    default: ماستودون (تیره)
-    mastodon-light: ماستودون (روشن)
-    system: خودکار (استفاده از زمینهٔ سامانه)
   time:
     formats:
       default: "%d %b %Y, %H:%M"

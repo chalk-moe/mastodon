@@ -1,8 +1,11 @@
 import type { ComponentPropsWithoutRef } from 'react';
 import { forwardRef } from 'react';
 
+import classNames from 'classnames';
+
 import { FormFieldWrapper } from './form_field_wrapper';
 import type { CommonFieldWrapperProps } from './form_field_wrapper';
+import classes from './select.module.scss';
 
 interface Props
   extends ComponentPropsWithoutRef<'select'>, CommonFieldWrapperProps {}
@@ -16,23 +19,36 @@ interface Props
  */
 
 export const SelectField = forwardRef<HTMLSelectElement, Props>(
-  ({ id, label, hint, required, hasError, children, ...otherProps }, ref) => (
+  ({ id, label, hint, required, status, children, ...otherProps }, ref) => (
     <FormFieldWrapper
       label={label}
       hint={hint}
       required={required}
-      hasError={hasError}
+      status={status}
       inputId={id}
     >
       {(inputProps) => (
-        <div className='select-wrapper'>
-          <select {...otherProps} {...inputProps} ref={ref}>
-            {children}
-          </select>
-        </div>
+        <Select {...otherProps} {...inputProps} ref={ref}>
+          {children}
+        </Select>
       )}
     </FormFieldWrapper>
   ),
 );
 
 SelectField.displayName = 'SelectField';
+
+export const Select = forwardRef<
+  HTMLSelectElement,
+  ComponentPropsWithoutRef<'select'>
+>(({ className, size, ...otherProps }, ref) => (
+  <div className={classes.wrapper}>
+    <select
+      {...otherProps}
+      className={classNames(className, classes.select)}
+      ref={ref}
+    />
+  </div>
+));
+
+Select.displayName = 'Select';

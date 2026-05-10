@@ -11,6 +11,7 @@ import type {
   ApiCreateCollectionPayload,
   ApiUpdateCollectionPayload,
   ApiCollectionsJSON,
+  WrappedCollectionAccountItem,
 } from '../api_types/collections';
 
 export const apiCreateCollection = (collection: ApiCreateCollectionPayload) =>
@@ -33,7 +34,29 @@ export const apiGetCollection = (collectionId: string) =>
     `v1_alpha/collections/${collectionId}`,
   );
 
-export const apiGetAccountCollections = (accountId: string) =>
+export const apiGetCollectionsCreatedByAccount = (accountId: string) =>
   apiRequestGet<ApiCollectionsJSON>(
     `v1_alpha/accounts/${accountId}/collections`,
   );
+
+export const apiGetCollectionsFeaturingAccount = (accountId: string) =>
+  apiRequestGet<ApiCollectionsJSON>(
+    `v1_alpha/accounts/${accountId}/in_collections`,
+  );
+
+export const apiAddCollectionItem = (collectionId: string, accountId: string) =>
+  apiRequestPost<WrappedCollectionAccountItem>(
+    `v1_alpha/collections/${collectionId}/items`,
+    { account_id: accountId },
+  );
+
+export const apiRemoveCollectionItem = (collectionId: string, itemId: string) =>
+  apiRequestDelete<WrappedCollectionAccountItem>(
+    `v1_alpha/collections/${collectionId}/items/${itemId}`,
+  );
+
+export const apiRevokeCollectionInclusion = (
+  collectionId: string,
+  itemId: string,
+) =>
+  apiRequestPost(`v1_alpha/collections/${collectionId}/items/${itemId}/revoke`);

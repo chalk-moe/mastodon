@@ -1,11 +1,7 @@
-import {
-  isClientFeatureEnabled,
-  isServerFeatureEnabled,
-} from '@/flavours/glitch/utils/environment';
+import { isServerFeatureEnabled } from '@/flavours/glitch/utils/environment';
 
 export function areCollectionsEnabled() {
-  return (
-    isClientFeatureEnabled('collections') &&
-    isServerFeatureEnabled('collections')
-  );
+  return isServerFeatureEnabled('collections');
 }
+
+export const getCollectionPath = (id: string) => `/collections/${id}`;
