@@ -172,7 +172,7 @@ class PostStatusService < BaseService
       raise ActiveRecord::RecordInvalid
     end
   rescue Antispam::SilentlyDrop
-    @status = @account.scheduled_status.new(scheduled_status_attributes).tap(&:delete)
+    @status = @account.scheduled_statuses.new(scheduled_status_attributes).tap(&:delete)
   end
 
   def postprocess_status!
@@ -206,7 +206,7 @@ class PostStatusService < BaseService
       return
     end
 
-    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if @options[:media_ids].size > Status::MEDIA_ATTACHMENTS_LIMIT || @options[:poll].present?
+    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if @options[:media_ids].size > Status::MEDIA_ATTACHMENTS_LIMIT
 
     @media = @account.media_attachments.where(status_id: nil).where(id: @options[:media_ids].take(Status::MEDIA_ATTACHMENTS_LIMIT).map(&:to_i))
 

@@ -76,6 +76,7 @@ kab:
       moderation:
         active: Yermed
         all: Akk
+        disabled: D arurmid
         pending: Yettraǧu
         suspended: Yettwaḥbes
         title: Aseɣyed
@@ -135,6 +136,7 @@ kab:
         create_domain_allow: Rnu-d taɣult yettusirgen
         create_domain_block: Rnu-d asewḥel n taɣult
         create_ip_block: Rnu alugen n IP
+        create_relay: Snulfu-d amedwel
         create_unavailable_domain: Rnu-d taɣult ur nelli ara
         create_user_role: Snulfu-d tamlilt
         destroy_announcement: Kkes ulɣu
@@ -285,21 +287,26 @@ kab:
       domain: Taɣult
       new:
         create: Rnu taɣult
+      search: Nadi
     email_subscriptions:
       accounts:
         account: Amiḍan
-        active: D urmid
-        inactive: D arurmid
         last_email: Imayl aneggaru
+        show:
+          view_account: Wali amiḍan
         status: Addad
       compliance_settings:
+        additional_footer_text:
+          action: Sefrek
         privacy_policy:
+          action: Sefrek
           title: Tasertit n tbaḍnit
       danger_zone:
         disable_feature:
           action: Kkes armad
         erase_all_data:
           action: Kkes isefka
+          title: Kkes akk isefka
       index:
         disabled:
           get_started: Aha bdu tura
@@ -390,6 +397,7 @@ kab:
       new:
         title: Rnu alugen n IP amaynut
       no_ip_block_selected: Ula yiwen n ulugen n IP ur yettwabeddel acku ula yiwen ur yettwafren
+      search: Nadi
       title: Ilugan n IP
     relationships:
       title: Assaɣen n %{acct}
@@ -417,7 +425,7 @@ kab:
       comment:
         none: Ula yiwen
       confirm: Sentem
-      delete_and_resolve: Kkes tisuffaɣ
+      delete_and_resolve: Kkes agbur
       mark_as_resolved: Creḍ-it yefra
       mark_as_unresolved: Creḍ-it ur yefra ara
       no_one_assigned: Ula yiwen
@@ -492,10 +500,6 @@ kab:
       feed_access:
         modes:
           public: Yal yiwen
-      landing_page:
-        values:
-          about: Ɣef
-          trends: Inezzaɣ
       registrations:
         title: Ajerred
       registrations_mode:
@@ -742,6 +746,7 @@ kab:
   disputes:
     strikes:
       status: 'Tasuffeɣt #%{id}'
+      title: "%{action} seg %{date}"
       title_actions:
         delete_statuses: Tukksa n tsuffeɣt
         none: Ɣur-wat
@@ -837,6 +842,7 @@ kab:
     types:
       blocking: Tabdart n yimiḍanen iweḥlen
       bookmarks: Ticraḍ
+      custom_filters: Imsizdigen
       following: Tabdert n wid teṭṭafareḍ
       lists: Tibdarin
       muting: Tabdert n wid tesgugmeḍ
@@ -921,7 +927,6 @@ kab:
     next: Ɣer zdat
     older: Aqbuṛ
     prev: Win iɛeddan
-    truncate: "&hellip;"
   polls:
     vote: Dɣer
   preferences:
