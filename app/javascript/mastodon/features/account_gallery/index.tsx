@@ -7,12 +7,12 @@ import { List as ImmutableList, isList } from 'immutable';
 import { openModal } from '@/mastodon/actions/modal';
 import { expandAccountMediaTimeline } from '@/mastodon/actions/timelines';
 import { AccountHeader } from '@/mastodon/components/account_header';
-import { ColumnBackButton } from '@/mastodon/components/column_back_button';
+import { Column } from '@/mastodon/components/column';
+import { ColumnBackButton } from '@/mastodon/components/column/back_button';
 import { LimitedAccountHint } from '@/mastodon/components/limited_account_hint';
 import { RemoteHint } from '@/mastodon/components/remote_hint';
 import ScrollableList from '@/mastodon/components/scrollable_list';
 import { BundleColumnError } from '@/mastodon/features/ui/components/bundle_column_error';
-import Column from '@/mastodon/features/ui/components/column';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
 import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
 import type { MediaAttachment } from '@/mastodon/models/media_attachment';
@@ -73,9 +73,10 @@ const selectGalleryTimeline = createAppSelector(
     if (isList(statusIds)) {
       for (const statusId of statusIds) {
         const status = statuses.get(statusId);
+        if (!status) continue;
         items = items.concat(
           (
-            status?.get('media_attachments') as ImmutableList<MediaAttachment>
+            status.get('media_attachments') as ImmutableList<MediaAttachment>
           ).map((media) => media.set('status', status)),
         );
       }

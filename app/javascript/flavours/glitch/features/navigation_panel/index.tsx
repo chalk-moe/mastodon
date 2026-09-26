@@ -11,11 +11,15 @@ import type { Map as ImmutableMap } from 'immutable';
 import { animated, useSpring } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 
+import {
+  StatusBookmarkActiveIcon,
+  StatusBookmarkIcon,
+  StatusLikeActiveIcon,
+  StatusLikeIcon,
+} from '@/flavours/glitch/components/status/icons';
 import { useAccount } from '@/flavours/glitch/hooks/useAccount';
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
-import BookmarksActiveIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
-import BookmarksIcon from '@/material-icons/400-24px/bookmarks.svg?react';
 import CollectionsActiveIcon from '@/material-icons/400-24px/category-fill.svg?react';
 import CollectionsIcon from '@/material-icons/400-24px/category.svg?react';
 import HomeActiveIcon from '@/material-icons/400-24px/home-fill.svg?react';
@@ -28,8 +32,6 @@ import PersonAddActiveIcon from '@/material-icons/400-24px/person_add-fill.svg?r
 import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
-import StarActiveIcon from '@/material-icons/400-24px/star-fill.svg?react';
-import StarIcon from '@/material-icons/400-24px/star.svg?react';
 import TrendingUpIcon from '@/material-icons/400-24px/trending_up.svg?react';
 import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
 import { openModal } from 'flavours/glitch/actions/modal';
@@ -128,7 +130,6 @@ const NotificationsLink = () => {
   const count = useAppSelector(selectUnreadNotificationGroupsCount);
   const showCount = useAppSelector(
     (state) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
       state.local_settings.getIn(['notifications', 'tab_badge']) as boolean,
   );
   const intl = useIntl();
@@ -371,8 +372,8 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
                 transparent
                 to='/favourites'
                 icon='star'
-                iconComponent={StarIcon}
-                activeIconComponent={StarActiveIcon}
+                iconComponent={StatusLikeIcon}
+                activeIconComponent={StatusLikeActiveIcon}
                 text={intl.formatMessage(messages.favourites)}
               />
             </li>
@@ -381,8 +382,8 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
                 transparent
                 to='/bookmarks'
                 icon='bookmarks'
-                iconComponent={BookmarksIcon}
-                activeIconComponent={BookmarksActiveIcon}
+                iconComponent={StatusBookmarkIcon}
+                activeIconComponent={StatusBookmarkActiveIcon}
                 text={intl.formatMessage(messages.bookmarks)}
               />
             </li>
@@ -504,7 +505,7 @@ export const CollapsibleNavigationPanel: React.FC = () => {
         x({ value }: { value: number }) {
           if (value === 0) {
             dispatch(openNavigation());
-          } else if (isLtrDir ? value > 0 : value < 0) {
+          } else if (value === OPEN_MENU_OFFSET) {
             dispatch(closeNavigation());
           }
         },
@@ -544,6 +545,7 @@ export const CollapsibleNavigationPanel: React.FC = () => {
     },
     {
       from: () => [x.get(), 0],
+      axis: 'x',
       filterTaps: true,
       bounds: isLtrDir ? { left: 0 } : { right: 0 },
       rubberband: true,

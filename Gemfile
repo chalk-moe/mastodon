@@ -62,7 +62,7 @@ gem 'ipaddr', '~> 1.2'
 gem 'irb', '~> 1.8'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
-gem 'linzer', '~> 0.7.7'
+gem 'linzer', '~> 0.8.0'
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'mime-types', '~> 3.7.0', require: 'mime/types/columnar'
 gem 'mutex_m'
@@ -107,7 +107,7 @@ gem 'prometheus_exporter', '~> 2.2', require: false
 gem 'opentelemetry-api', '~> 1.11.0'
 
 group :opentelemetry do
-  gem 'opentelemetry-exporter-otlp', '~> 0.34.0', require: false
+  gem 'opentelemetry-exporter-otlp', '~> 0.36.0', require: false
   gem 'opentelemetry-instrumentation-active_job', '~> 0.13.0', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.25.0', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.25.0', require: false

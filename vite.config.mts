@@ -3,7 +3,7 @@ import path from 'node:path';
 
 import formatjs from '@formatjs/unplugin/vite';
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
-import babel from '@rolldown/plugin-babel';
+import babel, { defineRolldownBabelPreset } from '@rolldown/plugin-babel';
 import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
 import browserslist from 'browserslist';
@@ -24,9 +24,19 @@ import { GlitchThemes as MastodonThemes } from './config/vite/plugin-glitch-them
 import { MastodonServiceWorkerChunkPaths } from './config/vite/plugin-sw-chunk-paths';
 import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 
-const jsRoot = path.resolve(__dirname, 'app/javascript');
+const jsRoot = path.resolve(import.meta.dirname, 'app/javascript');
 
 const cssAliasClasses: ReadonlyArray<string> = ['components', 'features'];
+
+// Avoid parsing files which don't reference `propTypes`
+const removePropTypesPreset = defineRolldownBabelPreset({
+  preset: () => ({ plugins: ['transform-react-remove-prop-types'] }),
+  rolldown: {
+    filter: {
+      code: /propTypes/i,
+    },
+  },
+});
 
 export const config: UserConfigFnPromise = async ({ mode, command }) => {
   const isProdBuild = mode === 'production' && command === 'build';
@@ -40,7 +50,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
   return {
     root: jsRoot,
     base: `/${outDirName}/`,
-    envDir: __dirname,
+    envDir: import.meta.dirname,
     resolve: {
       tsconfigPaths: true,
       alias: {
@@ -181,7 +191,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
     plugins: [
       react(),
       babel({
-        plugins: ['transform-react-remove-prop-types'],
+        presets: [removePropTypesPreset],
       }),
       formatjs(),
       MastodonThemes(),
