@@ -24,7 +24,7 @@ runs:
           ${{ inputs.additional-system-dependencies }}
 
     - name: Set up Ruby
-      uses: ruby/setup-ruby@984c0c890880bbf811283d6f09c4607c62d210a4 # v1
+      uses: ruby/setup-ruby@26e5b7d197ebf60545ee9667bcbace0be11ccaec # v1.334.0
       with:
         ruby-version: ${{ inputs.ruby-version }}
         bundler-cache: true
