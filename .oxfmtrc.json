@@ -23,6 +23,10 @@
     "app/javascript/styles/mastodon/reset.scss",
     "app/javascript/flavours/glitch/styles/reset.scss",
 
+    // Vendored CSS (chalk)
+    "/app/javascript/styles/tangerineui*/",
+    "/app/javascript/styles/fonts/ffxiv-lodestone.scss",
+
     // Automatically generated
     "/app/javascript/mastodon/features/emoji/emoji_map.json",
     "/app/javascript/mastodon/features/emoji/emoji_data.json",
