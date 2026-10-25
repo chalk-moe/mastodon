@@ -10,8 +10,6 @@ on:
     branches:
       - 'main'
       - 'stable-*'
-  schedule:
-    - cron: '22 6 * * 1'
 
 jobs:
   analyze:

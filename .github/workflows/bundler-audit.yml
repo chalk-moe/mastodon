@@ -16,9 +16,6 @@ on:
       - '.ruby-version'
       - '.github/workflows/bundler-audit.yml'
 
-  schedule:
-    - cron: '0 5 * * 1'
-
 jobs:
   security:
     runs-on: ubuntu-latest
