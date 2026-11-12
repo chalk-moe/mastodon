@@ -8,12 +8,12 @@ ARG TARGETPLATFORM=${TARGETPLATFORM}
 ARG BUILDPLATFORM=${BUILDPLATFORM}
 ARG BASE_REGISTRY="docker.io"
 
-# Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="26"]
+# Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="26.13.1"]
 # renovate: datasource=node-version depName=node
-ARG NODE_MAJOR_VERSION="26"
+ARG NODE_MAJOR_VERSION="26.13.1"
 # Debian image to use for base image, change with [--build-arg DEBIAN_VERSION="trixie"]
 ARG DEBIAN_VERSION="trixie"
-# Node image to use for base image based on combined variables (ex: 20-trixie-slim)
+# Node image to use for base image based on combined variables (ex: 26.13.1-trixie-slim)
 FROM ${BASE_REGISTRY}/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim AS streaming
 
 # Resulting version string is vX.X.X-MASTODON_VERSION_PRERELEASE+MASTODON_VERSION_METADATA
